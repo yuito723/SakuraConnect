@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sakura Connect - 新入生自己紹介</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+    @keyframes fall {
+      0% {
+        transform: translateY(-30vh);
+        opacity: 0;
+      }
+      5% {
+        opacity: 1;
+      }
+      95% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(130vh);
+        opacity: 0;
+      }
+    }
+
+    /* 空気抵抗を感じるような、左右の揺れと傾き */
+    @keyframes sway {
+      0% {
+        transform: translateX(-12vw) rotateZ(-15deg) rotateY(15deg);
+      }
+      100% {
+        transform: translateX(12vw) rotateZ(15deg) rotateY(-15deg);
+      }
+    }
+
+    .sakura-container {
+      position: absolute;
+      will-change: transform;
+      animation: fall linear infinite;
+      perspective: 1000px; /* 3D回転のためのパースペクティブ */
+    }
+
+    .sakura-sway {
+      /* ease-in-out で端で遅くなり、中央で速くなる振り子のような動き */
+      animation: sway ease-in-out infinite alternate;
+      transform-style: preserve-3d;
+    }
+
+    /* ホバー時にアニメーションを一時停止してクリックしやすくする */
+    .sakura-container:hover,
+    .sakura-container:hover .sakura-sway {
+      animation-play-state: paused;
+      z-index: 50;
+    }
+
+    .first-year-glow {
+      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9)) drop-shadow(0 0 25px rgba(255, 105, 180, 0.7));
+      animation: pulse-glow 2s infinite alternate;
+    }
+
+    @keyframes pulse-glow {
+      0% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.7)) drop-shadow(0 0 15px rgba(255, 105, 180, 0.5)); transform: scale(1); }
+      100% { filter: drop-shadow(0 0 25px rgba(255, 215, 0, 1)) drop-shadow(0 0 35px rgba(255, 105, 180, 0.9)); transform: scale(1.05); }
+    }
+    
+    /* Custom Scrollbar for modals */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #fbcfe8;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #f472b6;
+    }
+  </style>
+  <script type="module" crossorigin src="/SakuraConnect/assets/index-B-UorIpn.js"></script>
+</head>
+<body class="bg-pink-50 overflow-hidden font-sans text-gray-800">
+  <div id="root"></div>
+</body>
+</html>
